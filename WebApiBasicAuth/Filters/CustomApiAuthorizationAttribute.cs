@@ -24,7 +24,7 @@ namespace WebApiBasicAuth.Filters
             return retValue;
         }
 
-        private bool IsAllowedUser(string name)
+        protected bool IsAllowedUser(string name)
         {
             if (Users.Length == 0)
                 return false;
@@ -32,7 +32,7 @@ namespace WebApiBasicAuth.Filters
             return allowedUsers.Contains(name.ToUpperInvariant());
         }
 
-        private bool IsAutenticatedInRole(IPrincipal principal)
+        protected bool IsAutenticatedInRole(IPrincipal principal)
         {
             var retValue = false;
             if (Roles.Length > 0)
