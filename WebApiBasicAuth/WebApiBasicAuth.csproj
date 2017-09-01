@@ -138,6 +138,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MvcController.cs" />
     <Compile Include="Filters\BasicAuthenticationAttribute.cs" />
+    <Compile Include="Filters\CustomApiAuthorizationAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

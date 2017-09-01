@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
@@ -21,9 +23,10 @@ namespace WebApiBasicAuth.Filters
 
             if (null != tupleUserPass)
             {
-                var basicIdentity = new BasicAuthenticationIdentity(tupleUserPass.Item1, tupleUserPass.Item2);
-                var userIdentity = new GenericPrincipal(basicIdentity, null);
-                SetPrincipal(userIdentity);
+                var identity = new BasicAuthenticationIdentity(tupleUserPass.Item1, tupleUserPass.Item2);
+                identity.AddClaim(new Claim(ClaimTypes.Role, "Superuser"));                
+                var principal = new ClaimsPrincipal(identity);
+                SetPrincipal(principal);
             }
 
             return base.OnAuthorizationAsync(actionContext, cancellationToken);

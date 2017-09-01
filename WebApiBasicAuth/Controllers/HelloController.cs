@@ -9,6 +9,7 @@ namespace WebApiBasicAuth.Controllers
     {
         [HttpGet]
         [BasicAuthentication, Authorize]
+        [CustomApiAuthorization(Roles = "Superuser, Administrator", Users = "ApiUser")]
         public HttpResponseMessage Hello(int id)
         {
             return Request.CreateResponse(HttpStatusCode.OK, $"Hello! id={id}");
